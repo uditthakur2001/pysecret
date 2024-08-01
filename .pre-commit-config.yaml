@@ -1,0 +1,10 @@
+repos:
+  - repo: https://github.com/trufflesecurity/trufflehog
+    rev: v3.10.3  # Replace with the latest version found on GitHub
+    hooks:
+      - id: trufflehog
+        name: TruffleHog
+        entry: trufflehog --json --repo_path .
+        language: python
+        types: [text]
+        files: \.(py|js|java|yaml|json|env|md|txt)$
