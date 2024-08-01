@@ -1,20 +1,18 @@
-# main.py 
-from secrets import secrets # type: ignore
+import os
+import sqlite3
 
-secret_key = secrets.get('SECRET_KEY')
+# Example of credentials in code
+DATABASE_URL = "sqlite:///example.db"
+SECRET_KEY = "superSecretKey1234"
+API_KEY = "apikey1234567890"
 
-# gives default value if the credential is absent 
-google_maps_key = secrets.get('gmaps_key', 
-							'mapsapikey543') 
+def connect_to_database():
+    conn = sqlite3.connect(DATABASE_URL)
+    return conn
 
-db_user = secrets.get('DATABASE_USER', 'root') 
-db_pass = secrets.get('DATABASE_PASSWORD', 'pass') 
-db_port = secrets.get('DATABASE_PORT', 3306) 
+def main():
+    print(f"Using API Key: {API_KEY}")
+    connect_to_database()
 
-print('secret_key :', secret_key) 
-print('google_maps_key :', google_maps_key) 
-print('db_user :', db_user) 
-print('db_pass :', db_pass) 
-
-# no need to type cast numbers and booleans 
-print('db_port :', db_port, type(db_port)) 
+if __name__ == "__main__":
+    main()
