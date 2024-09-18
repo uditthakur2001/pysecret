@@ -1,18 +1,37 @@
-name: CI Pipeline
+name: CI Pipeline, ZAP Scan
 
 on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
           python-version: '3.x'
+          
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+
+  zap_scan:
+    runs-on: ubuntu-latest
     
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        
+      - name: Start OWASP ZAP Scan
+        run: |
+          docker run -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:8080 -r zap_report.html
+          
+      - name: Upload ZAP Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: ZAP Report
+          path: zap_report.html
