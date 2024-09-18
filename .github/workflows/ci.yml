@@ -31,7 +31,7 @@ jobs:
           docker run -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:8080 -r zap_report.html
           
       - name: Upload ZAP Report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ZAP Report
           path: zap_report.html
