@@ -28,7 +28,7 @@ jobs:
         
       - name: Start OWASP ZAP Scan
         run: |
-          docker run -t owasp/zap2docker-stable:2.14.0 zap-baseline.py -t http://localhost:8080 -r zap_report.html
+          docker run -t owasp/zap zap-baseline.py -t http://localhost:8080 -r zap_report.html
           
       - name: Upload ZAP Report
         uses: actions/upload-artifact@v3
