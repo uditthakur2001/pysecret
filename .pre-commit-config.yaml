@@ -7,3 +7,4 @@ repos:
         entry: gitleaks detect --source .
         language: docker
         types: [python, yaml, text]
+        stages: [commit]
