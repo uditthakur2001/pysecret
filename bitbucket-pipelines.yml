@@ -21,4 +21,4 @@ pipelines:
 definitions:
   services:
     docker:
-      memory: 1024  # Memory allocation for Docker service
+      memory: 1024 
